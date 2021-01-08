@@ -207,7 +207,7 @@ class _RestoDetailState extends State<RestoDetail> {
                                       //   child: Text(document['subtitle']),
                                       // ),
                                       Container(
-                                        child: Text('Цена: ' +
+                                        child: Text('Цена продукта: ' +
                                             document['price'].toString() +
                                             '\n' +
                                             document['idrest']),
@@ -228,28 +228,40 @@ class _RestoDetailState extends State<RestoDetail> {
                                             // navigateToDetail(post);
 
                                             // showModalBottomSheet(
-                                            //     backgroundColor: Colors.transparent,
+                                            //     backgroundColor:
+                                            //         Colors.transparent,
                                             //     context: context,
                                             //     builder: (context) {
                                             //       return Container(
-                                            //         padding: EdgeInsets.all(20.0),
+                                            //         padding:
+                                            //             EdgeInsets.all(20.0),
                                             //         decoration: BoxDecoration(
                                             //             color: Colors.white,
-                                            //             borderRadius: BorderRadius.only(
-                                            //               topRight: Radius.circular(15),
-                                            //               topLeft: Radius.circular(15),
+                                            //             borderRadius:
+                                            //                 BorderRadius.only(
+                                            //               topRight:
+                                            //                   Radius.circular(
+                                            //                       15),
+                                            //               topLeft:
+                                            //                   Radius.circular(
+                                            //                       15),
                                             //             ),
                                             //             boxShadow: [
                                             //               BoxShadow(
                                             //                   blurRadius: 1,
                                             //                   spreadRadius: 1,
-                                            //                   color: Colors.black12)
+                                            //                   color: Colors
+                                            //                       .black12)
                                             //             ]),
-                                            //         height: MediaQuery.of(context).size.height *
-                                            //             .60,
+                                            //         height:
+                                            //             MediaQuery.of(context)
+                                            //                     .size
+                                            //                     .height *
+                                            //                 .60,
                                             //         child: Column(
                                             //           children: [
-                                            //             Text(document['subtitle']),
+                                            //             Text(document[
+                                            //                 'subtitle']),
                                             //           ],
                                             //         ),
                                             //       );
