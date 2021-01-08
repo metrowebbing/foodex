@@ -1,0 +1,52 @@
+name: foodex
+description: Food Delivery
+
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^0.1.3
+  google_fonts: ^1.1.0
+  provider: ^4.1.2
+  http: ^0.12.1
+  
+  fluttertoast: ^7.1.1
+
+  
+  
+  firebase_auth: ^0.14.0+5
+  firebase_core: ^0.4.5
+  cloud_firestore: ^0.13.7
+  # firebase_auth: ^0.18.2
+  # firebase_core: ^0.5.0+1
+  # cloud_firestore: ^0.14.1+3
+
+  floating_action_row: ^0.1.0
+  cached_network_image: ^2.3.2+1
+  grouped_list: ^3.7.1
+  intl_phone_number_input: ^0.5.2+2
+
+
+
+
+  
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
