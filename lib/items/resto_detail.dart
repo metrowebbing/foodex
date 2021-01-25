@@ -34,13 +34,9 @@ class _RestoDetailState extends State<RestoDetail> {
           children: [
             Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Center(
-                  child: Text('опции заведения ' + widget.employeedata.name)),
+              child: Center(child: Text('опции заведения ' + widget.employeedata.name)),
             ),
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 15.0),
-                height: 35,
-                child: _tabs()),
+            Container(margin: EdgeInsets.symmetric(vertical: 15.0), height: 35, child: _tabs()),
             // Expanded(child: HiPage()),
             Expanded(child: _listing()),
             BottomBar(),
@@ -53,14 +49,9 @@ class _RestoDetailState extends State<RestoDetail> {
 
   Widget _tabs() {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance
-          .collection('category')
-          .where('idrest', isEqualTo: widget.employeedata.idrest)
-          .orderBy('por', descending: false)
-          .snapshots(),
+      stream: Firestore.instance.collection('category').where('idrest', isEqualTo: widget.employeedata.idrest).orderBy('por', descending: false).snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (!snapshot.hasData)
-          return Center(child: new CircularProgressIndicator());
+        if (!snapshot.hasData) return Center(child: new CircularProgressIndicator());
         return Container(
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -78,27 +69,15 @@ class _RestoDetailState extends State<RestoDetail> {
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     margin: EdgeInsets.symmetric(horizontal: 8.0),
                     decoration: BoxDecoration(
-                        color: selectedIndex == document['title']
-                            ? Theme.of(context).primaryColor
-                            : Colors.grey[200],
+                        color: selectedIndex == document['title'] ? Theme.of(context).primaryColor : Colors.grey[200],
                         boxShadow: selectedIndex == document['title']
-                            ? [
-                                BoxShadow(
-                                    color: Theme.of(context).primaryColor,
-                                    blurRadius: 30.0,
-                                    spreadRadius: -15.0,
-                                    offset: Offset(0, 12))
-                              ]
+                            ? [BoxShadow(color: Theme.of(context).primaryColor, blurRadius: 30.0, spreadRadius: -15.0, offset: Offset(0, 12))]
                             : null,
                         borderRadius: BorderRadius.circular(15.0)),
                     child: Center(
                       child: Text(
                         document['title'],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: selectedIndex == document['title']
-                                ? Colors.white
-                                : Colors.black),
+                        style: TextStyle(fontWeight: FontWeight.bold, color: selectedIndex == document['title'] ? Colors.white : Colors.black),
                       ),
                     )),
               );
@@ -152,8 +131,7 @@ class _RestoDetailState extends State<RestoDetail> {
           .where('category', isEqualTo: categoryId)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (!snapshot.hasData)
-          return Center(child: new CircularProgressIndicator());
+        if (!snapshot.hasData) return Center(child: new CircularProgressIndicator());
         return Padding(
           padding: const EdgeInsets.all(15.0),
           child: ListView(
@@ -179,51 +157,38 @@ class _RestoDetailState extends State<RestoDetail> {
                                   topRight: Radius.circular(20),
                                   bottomRight: Radius.circular(20),
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: 1,
-                                      spreadRadius: 1,
-                                      color: Colors.black12)
-                                ]),
+                                boxShadow: [BoxShadow(blurRadius: 1, spreadRadius: 1, color: Colors.black12)]),
                             child: Stack(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.all(12.0),
                                   child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Container(
                                         child: Text(
                                           document['title'],
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600),
+                                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                                         ),
                                       ),
                                       // Container(
                                       //   child: Text(document['subtitle']),
                                       // ),
                                       Container(
-                                        child: Text('Цена продукта: ' +
-                                            document['price'].toString() +
-                                            '\n' +
-                                            document['idrest']),
+                                        child: Text('Цена продукта: ' + document['price'].toString() + '\n' + document['idrest']),
                                       ),
                                     ],
                                   ),
                                 ),
-                                context
-                                        .watch<CartDataProvider>()
-                                        .cartItems
-                                        .containsKey(document['id'])
+                                context.watch<CartDataProvider>().cartItems.containsKey(document['id'])
                                     ? Positioned(
                                         bottom: 0,
                                         right: 0,
                                         child: InkWell(
                                           onTap: () {
+                                            print("Test amb");
+                                            print(document['idrest']);
                                             print(document['title']);
                                             // navigateToDetail(post);
 
@@ -274,8 +239,7 @@ class _RestoDetailState extends State<RestoDetail> {
                                               color: Colors.amber,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(20),
+                                                bottomRight: Radius.circular(20),
                                               ),
                                             ),
                                             child: Icon(
@@ -290,10 +254,11 @@ class _RestoDetailState extends State<RestoDetail> {
                                         right: 0,
                                         child: InkWell(
                                           onTap: () {
+                                            print("Test gre");
+                                            print(document['idrest']);
                                             print(document['title']);
-                                            context
-                                                .read<CartDataProvider>()
-                                                .addItem(
+                                            print(context.read<CartDataProvider>());
+                                            context.read<CartDataProvider>().addItem(
                                                   productId: document['id'],
                                                   imgUrl: document['imgUrl'],
                                                   title: document['title'],
@@ -332,12 +297,10 @@ class _RestoDetailState extends State<RestoDetail> {
                                             height: 50,
                                             width: 60,
                                             decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
+                                              color: Theme.of(context).primaryColor,
                                               borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(20),
-                                                bottomRight:
-                                                    Radius.circular(20),
+                                                bottomRight: Radius.circular(20),
                                               ),
                                             ),
                                             child: Icon(
@@ -382,10 +345,8 @@ class _RestoDetailState extends State<RestoDetail> {
                                     )
                                   ]),
                             ),
-                            placeholder: (context, url) =>
-                                CircularProgressIndicator(),
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error),
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
                           ),
                         ),
                       ],
