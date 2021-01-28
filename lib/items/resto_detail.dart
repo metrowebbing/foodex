@@ -10,6 +10,8 @@ import 'models/items.dart';
 import 'models/resto.dart';
 import 'package:provider/provider.dart';
 
+String _restID;
+
 class RestoDetail extends StatefulWidget {
   // Declare a field that holds the Todo.
   final EmployeeData employeedata;
@@ -255,15 +257,27 @@ class _RestoDetailState extends State<RestoDetail> {
                                         child: InkWell(
                                           onTap: () {
                                             print("Test gre");
+                                            var _id = document['id'].toString();
+                                            print(_id);
                                             print(document['idrest']);
                                             print(document['title']);
-                                            print(context.read<CartDataProvider>());
-                                            context.read<CartDataProvider>().addItem(
-                                                  productId: document['id'],
-                                                  imgUrl: document['imgUrl'],
-                                                  title: document['title'],
-                                                  price: document['price'],
-                                                );
+                                            var _ord = context.read<CartDataProvider>();
+                                            print(_ord.cartItems.length);
+                                            if (_ord.cartItemsCount == 0) {
+                                              _restID = document['idrest'];
+                                            }
+                                            // print(_ord.cartItems[0].idrest);
+                                            if (document['idrest'] == _restID) {
+                                              context.read<CartDataProvider>().addItem(
+                                                    productId: document['id'],
+                                                    imgUrl: document['imgUrl'],
+                                                    idrest: document['idrest'],
+                                                    title: document['title'],
+                                                    price: document['price'],
+                                                  );
+                                            } else {
+                                              print('Another rest');
+                                            }
 
                                             // showModalBottomSheet(
                                             //     backgroundColor: Colors.transparent,

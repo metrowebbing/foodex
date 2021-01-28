@@ -9,21 +9,23 @@ class Cart {
   final int number;
   final num price;
   final String imgUrl;
+  final String idrest;
 
-  Cart(
-      {@required this.id,
-      @required this.title,
-      @required this.number,
-      @required this.price,
-      @required this.imgUrl});
+  Cart({
+    @required this.id,
+    @required this.title,
+    @required this.number,
+    @required this.price,
+    @required this.imgUrl,
+    @required this.idrest,
+  });
 }
 
 // Cart Provider
 class CartDataProvider with ChangeNotifier {
   Map<String, Cart> _cartItems = {};
 
-  UnmodifiableMapView<String, Cart> get cartItems =>
-      UnmodifiableMapView(_cartItems);
+  UnmodifiableMapView<String, Cart> get cartItems => UnmodifiableMapView(_cartItems);
 
   int get cartItemsCount => _cartItems.length;
 
@@ -36,7 +38,7 @@ class CartDataProvider with ChangeNotifier {
     return total;
   }
 
-  void addItem({productId, price, title, imgUrl}) {
+  void addItem({productId, price, title, imgUrl, idrest}) {
     if (_cartItems.containsKey(productId)) {
       _cartItems.update(
           productId,
@@ -45,6 +47,7 @@ class CartDataProvider with ChangeNotifier {
                 title: ex.title,
                 price: ex.price,
                 imgUrl: ex.imgUrl,
+                idrest: ex.idrest,
                 number: ex.number + 1,
               ));
     } else {
@@ -55,6 +58,7 @@ class CartDataProvider with ChangeNotifier {
                 title: title,
                 price: price,
                 imgUrl: imgUrl,
+                idrest: idrest,
                 number: 1,
               ));
     }
@@ -75,6 +79,7 @@ class CartDataProvider with ChangeNotifier {
         title: ex.title,
         price: ex.price,
         imgUrl: ex.imgUrl,
+        idrest: ex.idrest,
         number: ex.number + 1,
       ),
     );
@@ -93,6 +98,7 @@ class CartDataProvider with ChangeNotifier {
           title: ex.title,
           price: ex.price,
           imgUrl: ex.imgUrl,
+          idrest: ex.idrest,
           number: ex.number - 1,
         ),
       );
