@@ -256,17 +256,10 @@ class _RestoDetailState extends State<RestoDetail> {
                                         right: 0,
                                         child: InkWell(
                                           onTap: () {
-                                            print("Test gre");
-                                            var _id = document['id'].toString();
-                                            print(_id);
-                                            print(document['idrest']);
-                                            print(document['title']);
                                             var _ord = context.read<CartDataProvider>();
-                                            print(_ord.cartItems.length);
                                             if (_ord.cartItemsCount == 0) {
                                               _restID = document['idrest'];
                                             }
-                                            // print(_ord.cartItems[0].idrest);
                                             if (document['idrest'] == _restID) {
                                               context.read<CartDataProvider>().addItem(
                                                     productId: document['id'],
@@ -276,7 +269,7 @@ class _RestoDetailState extends State<RestoDetail> {
                                                     price: document['price'],
                                                   );
                                             } else {
-                                              print('Another rest');
+                                              Scaffold.of(context).showSnackBar(SnackBar(content: Text('В корзине могут быть товары только одного поставщика')));
                                             }
 
                                             // showModalBottomSheet(
